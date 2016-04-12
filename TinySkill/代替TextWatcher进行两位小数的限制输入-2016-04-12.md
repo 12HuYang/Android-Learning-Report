@@ -33,3 +33,17 @@
 		protected abstract void afterTextChanged2(Editable s);
 	
 	}
+
+
+用法:
+
+	//do not delete those code
+		mEt_commission.addTextChangedListener(new NumLimitWatcher() {
+			
+		@Override
+		protected void afterTextChanged2(Editable s) {
+		//do super
+		doSomething();
+		}
+	});
+			
