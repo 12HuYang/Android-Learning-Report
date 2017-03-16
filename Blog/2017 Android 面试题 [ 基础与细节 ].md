@@ -1,6 +1,13 @@
 # 2017 Android 面试题 [ 基础与细节 ]
 
+> 感谢[@chuyao](https://segmentfault.com/a/1190000008682444)抛出的这些问题，平时业务代码写多了，很多基础的东西变得含糊不清了，这次裸辞出来找工作确实没有之前顺利，顺便求上海Android开发的坑。
+> 我自己整理了些答案，不对或者不妥的地方请大家指出，谢谢。
+
 ### 1. Activity建立在哪些窗口组件之上？顺带涉及View的事件传递问题。
+没读懂问题，=。=不知道是不是问Activity的UI结构，如果是可以[参考这篇文章](http://www.cnblogs.com/lcw/p/3372914.html)。
+![这个？](pic/Activity的window和view系统的层级关系.jpg)
+
+对于View的事件传递，则可以从 `Activity --> ViewGroup --> ...... --> Activity` 的** U型 **消费结构去说。
 
 ### 2. 什么情况下，Activity的onNewInstent()方法会执行？Activity的启动模式相关。
 当此Activity的实例已经存在，并且此时的启动模式为`SingleTask`和`SingleInstance`，另外当这个实例位于栈顶且启动模式为`SingleTop`时也会触发`onNewInstent()`。
@@ -26,9 +33,13 @@ transaction.commit();
 transaction只是记录了从一个状态到另一个状态的变化过程，即比如从FragmentA替换到FragmentB的过程，当通过函数transaction.addToBackStack(null)将这个事务添加到回退栈，则会记录这个事务的状态变化过程，如从FragmentA —>FragmentB,当用户点击手机回退键时，因为transaction的状态变化过程被保存，则可以将事务的状态变化过程还原，即将FragmentB —> FragmentA.
 
 添加到回退栈的函数：transaction.addToBackStack(null);
+
 [参考文章： http://blog.csdn.net/u011026329/article/details/47903177](http://blog.csdn.net/u011026329/article/details/47903177)
 
 ### 5. 能否将一个Activity放到系统的最近任务列表里，独立于宿主app任务卡之外？
+```
+我印象中是可以做到了，平时没用到，知道的同学请@我，谢谢！
+```
 ### 6. 对于同一个Service，在被start启动之后还能不能被bind？
 **能**
 > 服务基本上分为两种形式：
